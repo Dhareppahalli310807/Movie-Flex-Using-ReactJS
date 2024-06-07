@@ -8,7 +8,9 @@ class MoviCard extends React.Component {
             plot: "SuperNatural Powers Shown In This Movie.",
             price: 199,
             rating: 8.9,
-            stars: 0
+            stars: 0,
+            fav: false,
+            isInCart: false
         };
     }
 
@@ -29,9 +31,22 @@ class MoviCard extends React.Component {
             stars: this.state.stars - 0.5
         });
     }
+    //Toggle Favourite button
+    toggleFav= () => {
+        this.setState({
+            fav: !this.state.fav
+        })
+    }
+  
+    //Toggle add to cart button
+    toggleCart= () => {
+        this.setState({
+            isInCart: !this.state.isInCart
+        })
+    }
 
     render() {
-        const { title, plot, price, rating, stars } = this.state;
+        const { title, plot, price, rating, stars,fav, isInCart} = this.state;
         return (
             <div className="main">
                 <div className="movie-card">
@@ -56,8 +71,15 @@ class MoviCard extends React.Component {
                                 <img className="str-btn" alt="increases" src="https://cdn-icons-png.flaticon.com/128/7580/7580362.png" onClick={this.addStars}></img>
                                 <span className="starCount">{stars}</span>
                             </div>
-                            <button className="favourite-btn">Favourite</button>
-                            <button className="cart-btn">Add To Cart</button>
+
+                            {/**conditional rendering on Favourite button */}
+                            <button className={fav?"unfavourite-btn":"favourite-btn"}  onClick={this.toggleFav}>
+                                {fav ? "Un-favourite":"Favourite"}
+                            </button>
+                             {/**Conditional Rendering on Add to Cart Button */}
+                            <button className={isInCart?"unfavourite-btn":"cart-btn"}  onClick={this.toggleCart}>
+                                {isInCart ? "Remove from Cart":"Add to Cart"}
+                            </button>
                         </div>
                     </div>
                 </div>
