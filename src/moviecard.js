@@ -13,12 +13,18 @@ class MoviCard extends React.Component {
     }
 
     addStars = () => {
+        if(this.state.stars >= 5){
+            return;
+        }
         this.setState({
             stars: this.state.stars + 0.5
         });
     }
 
     decStars = () => {
+        if(this.state.stars <= 0){
+            return;
+        }
         this.setState({
             stars: this.state.stars - 0.5
         });
