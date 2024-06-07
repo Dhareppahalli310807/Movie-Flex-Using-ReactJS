@@ -1,9 +1,9 @@
-import MoviCard from "./moviecard";
+import MoviList from "./movieList";
 function App() {
   return (
     <>
     <h1>Movie App</h1>
-    <MoviCard />
+    <MoviList />
     </>
   );
 }
