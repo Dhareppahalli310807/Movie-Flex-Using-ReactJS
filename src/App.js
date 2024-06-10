@@ -52,21 +52,27 @@ export default class App extends React.Component{
   }
 
   handleAddtocart = (movie)=> {
-  const {movies} = this.state;
-  const movieId = movies.indexOf(movie);
+  let {movies, cartCount} = this.state;
+  const mid = movies.indexOf(movie);
 
-  movies[movieId].isInCart = !movies[movieId].isInCart;
+  movies[mid].isInCart = !movies[mid].isInCart;
+  if(movies[mid].isInCart){
+    cartCount = cartCount+1;
+  }else{
+    cartCount -= 1;
+  }
 
   this.setState({
-      movies
+      movies,
+      cartCount
   })
   }
 
   render(){
-    const {movies} = this.state;
+    const {movies, cartCount} = this.state;
     return(
       <>
-      <Navbar />
+      <Navbar cartCount= {cartCount}/>
       <MovieList movies ={movies}
                  onIncStars = {this.handleAddStars}
                  onDecStars = {this.handleDecStars}
